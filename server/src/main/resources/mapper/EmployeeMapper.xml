@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.muzi.repository.EmployeeRepository">
+    <update id="update" parameterType="fun.muzi.entity.Employee">
+        update employee set name=#{name}, gender=#{gender},
+            education=#{education}, phone=#{phone},
+            hiredate=#{hiredate}, department=#{department.id},
+            workingHours=#{workingHours},overtimeHours=#{overtimeHours},
+            position=#{position}, password=#{password}
+            where phone=#{phone}
+    </update>
+
+    <insert id="add" parameterType="fun.muzi.entity.Employee">
+        insert into employee
+        (name,gender,phone,education,hiredate,department)
+        values (#{name},#{gender},#{phone},#{education},#{hiredate},
+        #{department.id})
+    </insert>
+
+    <select id="getByPhone" parameterType="java.lang.String" resultType="fun.muzi.entity.Employee">
+        select * from employee where phone=#{phone}
+    </select>
+
+    <delete id="deleteByPhone" parameterType="java.lang.String">
+        delete from employee where phone=#{phone}
+    </delete>
+
+</mapper>

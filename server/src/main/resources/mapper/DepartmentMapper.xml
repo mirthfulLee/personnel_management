@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.muzi.repository.DepartmentRepository">
+
+    <insert id="add" parameterType="fun.muzi.entity.Department">
+        insert into department (name,chief,manager,salaryPerHour,overtimePayPerHour)
+            values (#{name},#{chief},#{manager},#{salaryPerHour},#{overtimePayPerHour})
+    </insert>
+
+    <delete id="deleteByName" parameterType="java.lang.String">
+        delete from department where name=#{name}
+    </delete>
+
+    <update id="update" parameterType="fun.muzi.entity.Department">
+        update department set
+            name=#{name}, chief=#{chief}, manager=#{manager},
+            salaryPerHour=#{salaryPerHour},overtimePayPerHour=#{overtimePayPerHour}
+            where id=#{id}
+    </update>
+
+    <select id="getByName" parameterType="java.lang.String" resultType="fun.muzi.entity.Department">
+        select * from department where name=#{name}
+    </select>
+
+    <select id="getById" parameterType="java.lang.Integer">
+        select * from department where id=#{id}
+    </select>
+
+    <select id="getEmployees" parameterType="java.lang.Integer" resultType="fun.muzi.entity.Employee">
+        select * from employee where department= #{id}
+    </select>
+
+</mapper>

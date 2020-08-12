@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fun.muzi.repository.ManagerRepository">
+
+    <select id="getByPhone" parameterType="java.lang.String" resultType="fun.muzi.entity.Manager">
+        select * from manager where phone=#{phone}
+    </select>
+
+    <update id="update" parameterType="fun.muzi.entity.Manager">
+        update manager set name=#{name}, password=#{password}
+            where phone=#{phone}
+    </update>
+
+    <insert id="add" parameterType="fun.muzi.entity.Manager">
+        insert into manager (name,phone,password)
+            values (#{name},#{phone},#{password})
+    </insert>
+
+    <select id="getDepartments" parameterType="java.lang.String" resultType="fun.muzi.entity.Department">
+        select * from department where manager=#{manager}
+    </select>
+
+</mapper>
